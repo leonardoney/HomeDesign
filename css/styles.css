@@ -1,0 +1,203 @@
+@media (max-width: 768px) {
+    .navbar-brand img {
+        width: 40px;
+        height: 25px;
+    }
+
+    .container h1 {
+        font-size: 2.5rem;
+    }
+
+    .form-group label, .form-group input {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand img {
+        width: 30px;
+        height: 20px;
+    }
+
+    .container h1 {
+        font-size: 2rem;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+
+    footer {
+        font-size: 1rem;
+    }
+    
+}#navigation *{
+    color: #109196;
+    font-family: 'Fair Prosper';
+    font-size: 25px;
+    }
+#navigation * :hover{
+        color: #520404;
+    }
+#navbarNav *{
+color: #109196;
+font-family: 'times new roman';
+font-size: 20px;
+
+}
+#navbarNav * :hover{
+    color: #520404;
+}
+.text-centre {
+font-family: 'Chaprile Calligraphy';
+color: #16bac0;
+font-size: 5rem;
+
+}
+.text-center {
+    font-family: 'times new roman';
+    color: #16bac0;
+    font: size 200px;
+}
+.t { font-family: 'Times New Roman', Times, serif;
+    color: #520404;
+    text-align: center;
+    font-size: 18px;
+}
+.firma {
+    text-align: right;
+    margin-top: 50px;
+    font-family: 'Chaprile Calligraphy';
+    color:#16bac0;
+    font-size: 50px;
+}
+.d-inline *{
+    margin-top: 20px;
+    
+}
+
+.list-group a {
+    color: #16bac0;
+}
+/* Centrar el contenedor principal */
+.container {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 20px;
+}
+h1, h3 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 10px;
+    border-collapse: collapse;
+    
+}
+
+th, td {
+    padding: 15px;
+    border: 1px solid #0393a7;
+    text-align: center;
+}
+
+th {
+    background-color: #16bac0;
+ 
+}
+
+/* Contenedor para las imágenes superpuestas, centrado y agrandado */
+.image-container {
+    position: relative;
+    width: 600px; /* Aumentar tamaño del contenedor */
+    height: 300px; /* Aumentar tamaño del contenedor */
+    margin: 0 auto; /* Asegurar que esté centrado */
+}
+
+/* Imágenes superpuestas */
+.superposed-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 3s ease-in-out; /* Suavizar la transición */
+}
+
+#bnImage {
+    z-index: 1;
+    opacity: 1;
+}
+
+#colorImage {
+    z-index: 0;
+    opacity: 0; /* Inicialmente invisible */
+}
+
+/* Cambia la opacidad de las imágenes cuando el ratón pasa por encima */
+.image-container:hover #bnImage {
+    opacity: 0.1; /* Imagen blanco y negro casi invisible */
+}
+
+.image-container:hover #colorImage {
+    opacity: 1; /* Imagen en color completamente visible */
+}
+
+/* Fondo de todas las páginas */
+body {
+    background-image: url('../image/image_proyecto.jpg');
+    background-size: cover; /* Hace que la imagen cubra toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Mantiene el fondo fijo al hacer scroll */
+    margin: 0;
+    padding: 0;
+    
+}
+
+
+/* Estilo para el botón de comenzar */
+.btn-comenzar {
+    
+   margin: 0 auto;
+   padding: 10px 30px;
+   font-size: 20px;
+ 
+}
+
+
+
+
+
+.btn-vaciar {
+padding: 6px 20px;
+}
+.btn-fin {
+padding: 6px 9px;
+
+}
+
+
+/* Estilo para el pie de página */
+
+footer { 
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    color: #109196;
+    width: 100%;
+    bottom: 0;
+    position:fixed;
+}
+footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+footer a:hover {
+    text-decoration: none;
+    color: rgb(82, 2, 2);
+
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrito de Compras</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/botones.css" />
+    <link rel="stylesheet" href="css/cajas.css" />
+</head>
+<body>
+  <!-- Navegación -->
+  <header>
+    <section id="navigation">
+      <nav class="navbar navbar-light bg-warning w-100">
+        <a class="navbar-brand" href="index.html">
+            <img src="image/HomeDesing logo.png" alt="logo" width="60" height="35" class="d-inline-block align-top" />
+            HomeDesign
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <img width="40" height="35" src="https://img.icons8.com/fluency/48/menu--v1.png" alt="menu"/>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="tienda.html">Tienda</a></li>
+                <li class="nav-item"><a class="nav-link" href="carrito.html">Carrito</a></li>
+                <li class="nav-item"><a class="nav-link" href="login.html">Iniciar Sesión</a></li>
+            </ul>
+        </div>
+      </nav>
+    </section>
+  </header>
+
+  <div class="container mt-5">
+      <h1 class="text-center">Tu Carrito de Compras</h1>
+      <h6 class="t">Revisa los productos que seleccionaste</h6>
+      <table class="table table-striped mt-4">
+          <thead class="thead">
+              <tr>
+                  <th>Compra</th>
+                  <th>Producto</th>
+                  <th>Descripción</th>
+                  <th>Precio</th>
+                  <th>Cantidad</th>
+                  <th>Subtotal</th>
+                  <th>Acciones</th>
+              </tr>
+          </thead>
+          <tbody id="carrito-body">
+              <!-- Los productos se mostrarán aquí mediante JavaScript -->
+          </tbody>
+      </table>
+      <h3 class="text-right">Total: $<span id="total"></span></h3>
+
+      <div class="text-right">
+          <form action="php/vaciar_carrito.php" method="POST" class="d-inline">
+              <input type="hidden" name="id_compra" value="1" />
+              <button type="submit" class="btn btn-outline-danger btn-vaciar">Vaciar Carrito</button>
+          </form>
+      </div>
+
+      <div class="text-right">
+          <form action="php/finalizar_compra.php" method="POST" class="d-inline">
+              <input type="hidden" name="id_compra" value="1" />
+              <button type="submit" class="btn btn-sample btn-fin">Finalizar Compra</button>
+          </form>
+      </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-warning text-center mt-5">
+      <div class="p-3 bg-warning">
+          © 2024 HomeDesign. Todos los derechos reservados.
+          <a href="contacto.html" class="text ml-3">Contacto</a>
+          <a href="sobre-nosotros.html" class="text ml-3">Sobre Nosotros</a>
+          <a href="publicidad.html" class="text ml-3">Publicidad</a>
+      </div>
+  </footer>
+
+  <!-- Scripts de Bootstrap y JavaScript para cargar los datos del carrito -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+    fetch('php/obtener_carrito.php')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la respuesta del servidor');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const tbody = document.getElementById('carrito-body');
+            tbody.innerHTML = '';
+
+            // Verifica si hay items en el carrito
+            if (data.items && data.items.length > 0) {
+                data.items.forEach(item => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.id_compra}</td>
+                        <td>${item.producto}</td>
+                        <td>${item.descripcion}</td>
+                        <td>$${item.precio}</td>
+                        <td>${item.cantidad}
+                            <form action="php/agregar_unidad.php" method="POST">
+                                <input type="hidden" name="id_compra" value="${item.id_compra}" />
+                                <input type="hidden" name="producto" value="${item.producto}" />
+                                <button type="submit" class="btn btn-outline-danger">+1</button>
+                            </form>
+                            <form action="php/quitar_unidad.php" method="POST">
+                                <input type="hidden" name="id_compra" value="${item.id_compra}" />
+                                <input type="hidden" name="producto" value="${item.producto}" />
+                                <button type="submit" class="btn btn-outline-danger">-1</button>
+                            </form>
+                        </td>
+                        <td>$${item.subtotal}</td>
+                        <td>
+                            <form action="php/eliminar_item.php" method="POST">
+                                <input type="hidden" name="id_compra" value="${item.id_compra}" />
+                                <input type="hidden" name="producto" value="${item.producto}" />
+                                <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } else {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td colspan="7" class="text-center">No hay productos en el carrito</td>
+                `;
+                tbody.appendChild(row);
+            }
+
+            // Mostrar el total
+            document.getElementById('total').textContent = data.total || 0;
+        })
+        .catch(error => console.error('Error al obtener los datos del carrito:', error));
+});
+  </script>
+</body>
+</html>
