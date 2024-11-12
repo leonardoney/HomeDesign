@@ -35,6 +35,9 @@ require_once 'vendor/autoload.php';
 use MercadoPago\Client\Preference\PreferenceClient;
 use MercadoPago\MercadoPagoConfig;
 
+//Si hay productos en el carrito, crear items para pago
+if (!empty($result)) {
+    
 // Agrega credenciales ACCESS_TOKEN
 MercadoPagoConfig::setAccessToken("APP_USR-1186059779117849-111200-34340602b93556944f57fe01c278abe2-2092484724");
 
@@ -68,6 +71,13 @@ $preference = $client->create([
     "statement_descriptor" => "Home Desginer",  // Descripción extracto de la tarjeta del comprador    
     "external_reference" => "CDP001", // Ref externa de la transacción en el sistema del vendedor
 ]);
+$preference->back_urls = array(
+    "success" => "localhost/homedesign/pagoaprobado.php",
+    "failure" => "localhost/homedesign/errordepago.php",
+    "pending" => "localhost/homedesign/pagopendiente.php"
+);
+
+}
 
 ?>
 
