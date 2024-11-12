@@ -1,113 +1,40 @@
 <?php
+include 'db_connection.php';
+include 'subrutinas.php';
 
-// Desactiva la notificación de errores deprecados en PHP
-error_reporting(~E_DEPRECATED);
+// ID de la compra actual
+$id_compra = $_SESSION['id_compra'];
 
-// Carga el autoload de Composer para gestionar dependencias
-require_once 'vendor/autoload.php';
+// Consultar los productos del carrito para la compra específica
+$sql = "SELECT i.*, p.nombre FROM items_x_compra i
+JOIN productos p ON i.codigo_producto = p.codigo_producto WHERE i.id_compra = :id_compra";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':id_compra', $id_compra, PDO::PARAM_INT);
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Importa las clases necesarias del SDK de MercadoPago
-use MercadoPago\Client\Preference\PreferenceClient;
-use MercadoPago\MercadoPagoConfig;
-
-// Agrega credenciales ACCESS_TOKEN
-MercadoPagoConfig::setAccessToken("APP_USR-1186059779117849-111200-34340602b93556944f57fe01c278abe2-2092484724");
-
-// Crea una instancia del cliente de preferencias de MercadoPago
-$client = new PreferenceClient();
-
-// Llamada al archivo obtener_carrito.php para obtener los items
-$carrito = file_get_contents('php/obtener_carrito.php');
-$carrito_data = json_decode($carrito, true);
-
-// Verificar si se obtuvo el carrito correctamente
-if (!$carrito_data || !isset($carrito_data['items']) || empty($carrito_data['items'])) {
-    die("Error al obtener los productos del carrito o el carrito está vacío.");
-}
-
-// Construir los items para la preferencia de pago
+$total = 0;
 $items = [];
-foreach ($carrito_data['items'] as $producto) {
+
+// Recorrer los resultados de la consulta
+foreach ($result as $row) {
+    $subtotal = $row['cantidad_comprada'] * $row['precio_item'];
+    $total += $subtotal;
     $items[] = [
-        'id' => $producto['producto'], // Codigo de producto
-        'title' => $producto['descripcion'], // Nombre del producto
-        'quantity' => $producto['cantidad'], // Cantidad
-        'unit_price' => $producto['precio'] // Precio
+        'id_compra' => $row['id_compra'],
+        'producto' => $row['codigo_producto'],
+        'descripcion' => $row['nombre'], 
+        'precio' => $row['precio_item'],
+        'cantidad' => $row['cantidad_comprada'],
+        'subtotal' => $subtotal,
     ];
 }
 
-// Verificar si hay productos en el carrito antes de crear la preferencia
-if (empty($items)) {
-    die("El carrito está vacío. No se puede crear la preferencia.");
-}
+// Cerrar la conexión
+$stmt = null;
+$pdo = null;
 
-// Crear la preferencia con los productos del carrito
-$preference = $client->create([
-    "items" => $items,
-
-    // Descripción que aparecerá en el extracto de la tarjeta del comprador
-    "statement_descriptor" => "MI TIENDA",
-
-    // Referencia externa para identificar la transacción en el sistema del vendedor
-    "external_reference" => "CDP001",
-]);
+// Invocar plataforma de pagos
+plataforma_pago($id_compra, $total);
 
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mercado Pago Checkout Pro</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-    <!-- SDK MercadoPago.js -->
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
-</head>
-<body>
-    <section class="py-2">
-        <div class="container px-4 px-lg-5 my-3">
-            <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="images/balon.jpg" alt="Balón" /></div>
-                <div class="col-md-6">
-                    <div class="small mb-1">SKU: DEP-0001</div>
-                    <h1 class="display-5 fw-bolder">Balón de Futbol</h1>
-                    <div class="fs-5 mb-5">
-                        <span>$550.00</span>
-                    </div>
-                    <p class="lead">Elaborado con altos estándares de calidad, 4 capas que permite mayor duración.</p>
-                    <div class="d-flex">
-                        <!-- Contenedor del botón -->
-                        <div id="wallet_container"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Inicializa el objeto MercadoPago con el PUBLIC_KEY
-        const mp = new MercadoPago('APP_USR-aec9b95c-7058-49a7-aa2f-9daa70ac92f5', {
-            locale: 'es-AR'
-        });
-
-        // Crea un componente de billetera de MercadoPago en el contenedor con id "wallet_container"
-        mp.bricks().create("wallet", "wallet_container", {
-            initialization: {
-                preferenceId: '<?php echo $preference->id; ?>',
-                redirectMode: 'self'
-            },
-            customization: {
-                texts: {
-                    action: "pay",
-                    valueProp: 'security_safety',
-                },
-            },
-        });
-    </script>
-</body>
-</html>

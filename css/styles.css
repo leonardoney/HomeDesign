@@ -31,8 +31,11 @@
     footer {
         font-size: 1rem;
     }
-    
-}#navigation *{
+}
+
+
+
+#navigation *{
     color: #109196;
     font-family: 'Fair Prosper';
     font-size: 25px;
@@ -49,12 +52,23 @@ font-size: 20px;
 #navbarNav * :hover{
     color: #520404;
 }
-.text-centre {
+.animate__animated {
 font-family: 'Chaprile Calligraphy';
 color: #16bac0;
 font-size: 5rem;
 
 }
+
+.navbar-brand {
+    margin-left: 10px; /* Ajusta el valor para mover el logo hacia adentro */
+}
+
+.navbar-toggler {
+    margin-right: 10px; /* Ajusta el valor para mover el toggler hacia adentro */
+}
+
+
+
 .text-center {
     font-family: 'times new roman';
     color: #16bac0;
@@ -171,6 +185,7 @@ body {
 
 
 
+
 .btn-vaciar {
 padding: 6px 20px;
 }
@@ -178,6 +193,8 @@ padding: 6px 20px;
 padding: 6px 9px;
 
 }
+
+
 
 
 /* Estilo para el pie de página */
