@@ -76,7 +76,7 @@ $preference->back_urls = array(
     "failure" => "localhost/homedesign/errordepago.php",
     "pending" => "localhost/homedesign/pagopendiente.php"
 );
-
+$preference->auto_return = "approved";
 }
 
 ?>
