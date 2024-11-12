@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Configuración del correo
     $to = "thePersistent@tu-dominio.com";  // Reemplaza con el correo de destino
-    $subject = "Nueva solicitud de publicidad";
+    $subject = "Nueva solicitud de contacto";
     $body = "Nombre: $nombre\nCorreo Electrónico: $email\nMensaje:\n$mensaje";
     $headers = "From: $email\r\n";
     $headers .= "Reply-To: $email\r\n";
