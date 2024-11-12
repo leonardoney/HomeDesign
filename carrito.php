@@ -241,7 +241,6 @@ document.addEventListener('DOMContentLoaded', function () {
       mp.bricks().create("wallet", "wallet_container", {
         initialization: {
             preferenceId: '<?php echo $preference->id; ?>',
-            //preferenceId: "<PREFERENCE_ID>",
         },
       });
   </script>
