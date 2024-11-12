@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </body>
 </html>
 
-  <!-- PHP para mercadopago -->
+<!-- PHP para mercadopago -->
 <?php
 // SDK de Mercado Pago
 use MercadoPago\MercadoPagoConfig;
