@@ -54,16 +54,17 @@ foreach ($result as $row) {
         'cantidad' => $row['cantidad_comprada'],
         'subtotal' => $subtotal,
     ];
+
+    $precio_item = floatval($row['precio_item']);
+    $pref_item[] = [
+            "id" => $row['codigo_producto'],
+            "title" => $row['nombre'],
+            "quantity" => $row['cantidad_comprada'],
+            "unit_price" => $precio_item
+    ];
 }
 $preference = $client->create([
-    "items" => [
-        [
-            "id" => "DEP-0001",
-            "title" => "Balon de Futbol",
-            "quantity" => 1,
-            "unit_price" => 550
-        ]
-    ],  
+    "items" => $pref_item,  // Aquí pasas la variable que contiene el arreglo de items
     "statement_descriptor" => "Home Desginer",  // Descripción extracto de la tarjeta del comprador    
     "external_reference" => "CDP001", // Ref externa de la transacción en el sistema del vendedor
 ]);
