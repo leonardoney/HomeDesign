@@ -1,7 +1,29 @@
-
-
 <!-- PHP para mercadopago -->
 <?php
+
+include 'php/db_connection.php';
+
+// ID de la compra actual
+$id_compra = $_SESSION['id_compra'];
+$id_usuario = $_SESSION['user_id'];
+
+// Consultar los productos del carrito para la compra específica
+// $sql = "SELECT * FROM items_x_compra WHERE id_compra = :id_compra";
+$sql = "SELECT i.*, p.nombre FROM items_x_compra i
+JOIN productos p ON i.codigo_producto = p.codigo_producto
+WHERE i.id_compra = :id_compra AND i.id_usuario = :id_usuario";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':id_compra', $id_compra, PDO::PARAM_INT);
+$stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_STR);
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$total = 0;
+$items = [];
+
+// Cerrar la conexión
+$stmt = null;
+$pdo = null;
 
 // Desactiva la notificación de errores deprecados en PHP
 error_reporting(~E_DEPRECATED);
@@ -20,6 +42,19 @@ MercadoPagoConfig::setAccessToken("APP_USR-1186059779117849-111200-34340602b9355
 $client = new PreferenceClient();
 
 // Crea una preferencia de pago con los detalles del producto y otras configuraciones
+// Recorrer los resultados de la consulta
+foreach ($result as $row) {
+    $subtotal = $row['cantidad_comprada'] * $row['precio_item'];
+    $total += $subtotal;
+    $items[] = [
+        'id_compra' => $row['id_compra'],
+        'producto' => $row['codigo_producto'],
+        'descripcion' => $row['nombre'], 
+        'precio' => $row['precio_item'],
+        'cantidad' => $row['cantidad_comprada'],
+        'subtotal' => $subtotal,
+    ];
+}
 $preference = $client->create([
     "items" => [
         [
@@ -28,13 +63,9 @@ $preference = $client->create([
             "quantity" => 1,
             "unit_price" => 550
         ]
-    ],
-
-    // Descripción que aparecerá en el extracto de la tarjeta del comprador
-    "statement_descriptor" => "MI TIENDA",
-
-    // Referencia externa para identificar la transacción en el sistema del vendedor
-    "external_reference" => "CDP001",
+    ],  
+    "statement_descriptor" => "Home Desginer",  // Descripción extracto de la tarjeta del comprador    
+    "external_reference" => "CDP001", // Ref externa de la transacción en el sistema del vendedor
 ]);
 
 ?>
