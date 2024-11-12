@@ -16,34 +16,16 @@ MercadoPagoConfig::setAccessToken("APP_USR-1186059779117849-111200-34340602b9355
 // Crea una instancia del cliente de preferencias de MercadoPago
 $client = new PreferenceClient();
 
-// Llamada al archivo obtener_carrito.php para obtener los items
-$carrito = file_get_contents('php/obtener_carrito.php');
-$carrito_data = json_decode($carrito, true);
-
-// Verificar si se obtuvo el carrito correctamente
-if (!$carrito_data || !isset($carrito_data['items']) || empty($carrito_data['items'])) {
-    die("Error al obtener los productos del carrito o el carrito está vacío.");
-}
-
-// Construir los items para la preferencia de pago
-$items = [];
-foreach ($carrito_data['items'] as $producto) {
-    $items[] = [
-        'id' => $producto['producto'], // Codigo de producto
-        'title' => $producto['descripcion'], // Nombre del producto
-        'quantity' => $producto['cantidad'], // Cantidad
-        'unit_price' => $producto['precio'] // Precio
-    ];
-}
-
-// Verificar si hay productos en el carrito antes de crear la preferencia
-if (empty($items)) {
-    die("El carrito está vacío. No se puede crear la preferencia.");
-}
-
-// Crear la preferencia con los productos del carrito
+// Crea una preferencia de pago con los detalles del producto y otras configuraciones
 $preference = $client->create([
-    "items" => $items,
+    "items" => [
+        [
+            "id" => "DEP-0001",
+            "title" => "Balon de Futbol",
+            "quantity" => 1,
+            "unit_price" => 550
+        ]
+    ],
 
     // Descripción que aparecerá en el extracto de la tarjeta del comprador
     "statement_descriptor" => "MI TIENDA",
@@ -56,6 +38,7 @@ $preference = $client->create([
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,6 +51,7 @@ $preference = $client->create([
     <!-- SDK MercadoPago.js -->
     <script src="https://sdk.mercadopago.com/js/v2"></script>
 </head>
+
 <body>
     <section class="py-2">
         <div class="container px-4 px-lg-5 my-3">
@@ -110,4 +94,5 @@ $preference = $client->create([
         });
     </script>
 </body>
+
 </html>

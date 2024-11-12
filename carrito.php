@@ -59,15 +59,15 @@
               <button type="submit" class="btn btn-outline-danger btn-vaciar">Vaciar Carrito</button>
           </form>
       </div>
+  <div id="wallet_container"></div>
 
-      <div class="text-right">
+     <!--<div class="text-right">
           <form action="php/finalizar_compra.php" method="POST" class="d-inline">
               <input type="hidden" name="id_compra" value="1" />
               <button type="submit" class="btn btn-sample btn-fin">Finalizar Compra</button>
           </form>
-      </div>
+      </div>-->
   </div>
-  <div id="wallet_container">Mercadopago</div>
 
   <!-- Footer -->
   <footer class="bg-warning text-center mt-5">
@@ -142,5 +142,47 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => console.error('Error al obtener los datos del carrito:', error));
 });
   </script>
+  <!-- Script de mercadopago -->
+    <script defer>
+      const mp = new MercadoPago('APP_USR-aec9b95c-7058-49a7-aa2f-9daa70ac92f5', {
+        locale: 'es-AR'
+      });
+
+      mp.bricks().create("wallet", "wallet_container", {
+        initialization: {
+            preferenceId: "<PREFERENCE_ID>",
+        },
+      });
+  </script>
 </body>
 </html>
+
+  <!-- PHP para mercadopago -->
+<?php
+// SDK de Mercado Pago
+use MercadoPago\MercadoPagoConfig;
+
+// Agrega credenciales
+MercadoPagoConfig::setAccessToken("APP_USR-1186059779117849-111200-34340602b93556944f57fe01c278abe2-2092484724");
+
+// Crear Preferencia
+$client = new PreferenceClient();
+$preference = $client->create([
+  "items"=> array(
+    array(
+      "title" => "Mi producto",
+      "quantity" => 1,
+      "unit_price" => 2000
+    )
+  )
+]);
+
+//Urls de retorno
+$preference->back_urls = array(
+    "success" => "https://www.tu-sitio/success",
+    "failure" => "http://www.tu-sitio/failure",
+    "pending" => "http://www.tu-sitio/pending"
+);
+$preference->auto_return = "approved";
+
+?>
