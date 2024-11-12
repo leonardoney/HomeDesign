@@ -3,13 +3,16 @@ include 'db_connection.php';
 
 // ID de la compra actual
 $id_compra = $_SESSION['id_compra'];
+$id_usuario = $_SESSION['user_id'];
 
 // Consultar los productos del carrito para la compra específica
 // $sql = "SELECT * FROM items_x_compra WHERE id_compra = :id_compra";
 $sql = "SELECT i.*, p.nombre FROM items_x_compra i
-JOIN productos p ON i.codigo_producto = p.codigo_producto WHERE i.id_compra = :id_compra";
+JOIN productos p ON i.codigo_producto = p.codigo_producto
+WHERE i.id_compra = :id_compra AND i.id_usuario = :id_usuario";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':id_compra', $id_compra, PDO::PARAM_INT);
+$stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_STR);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

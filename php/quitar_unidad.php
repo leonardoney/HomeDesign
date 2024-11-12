@@ -5,6 +5,7 @@ include 'subrutinas.php';
 // Verificar si se ha enviado el parámetro necesario (id_compra y producto)
 if (isset($_POST['id_compra']) && isset($_POST['producto'])) {
     $id_compra = $_POST['id_compra'];
+    $id_usuario = $_SESSION['user_id'];
     $producto = $_POST['producto'];
 
     try {
@@ -12,9 +13,13 @@ if (isset($_POST['id_compra']) && isset($_POST['producto'])) {
         $pdo->beginTransaction();
 
         // Obtener la cantidad comprada del producto
-        $sql_select = "SELECT cantidad_comprada FROM items_x_compra WHERE id_compra = :id_compra AND codigo_producto = :producto";
+        $sql_select = "SELECT cantidad_comprada FROM items_x_compra
+                       WHERE id_compra = :id_compra
+                       AND   id_usuario = :id_usuario
+                       AND   codigo_producto = :producto";
         $stmt = $pdo->prepare($sql_select);
         $stmt->bindParam(':id_compra', $id_compra, PDO::PARAM_INT);
+        $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_STR);
         $stmt->bindParam(':producto', $producto, PDO::PARAM_INT);
         $stmt->execute();
         $item = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -27,10 +32,14 @@ if (isset($_POST['id_compra']) && isset($_POST['producto'])) {
                 $cantidad_comprada = $item['cantidad_comprada'] - 1;
 
                 // Actualizar la cantidad_comprada en la tabla items_x_compra
-                $sql_update = "UPDATE items_x_compra SET cantidad_comprada = :cantidad_comprada WHERE id_compra = :id_compra AND codigo_producto = :producto";
+                $sql_update = "UPDATE items_x_compra SET cantidad_comprada = :cantidad_comprada
+                WHERE id_compra = :id_compra
+                AND   id_usuario = :id_usuario
+                AND   codigo_producto = :producto";
                 $stmt = $pdo->prepare($sql_update);
                 $stmt->bindParam(':cantidad_comprada', $cantidad_comprada, PDO::PARAM_INT);
                 $stmt->bindParam(':id_compra', $id_compra, PDO::PARAM_INT);
+                $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_STR);
                 $stmt->bindParam(':producto', $producto, PDO::PARAM_INT);
                 $stmt->execute();
 

@@ -34,10 +34,12 @@ CREATE TABLE compras (
 
 CREATE TABLE items_x_compra (
     id_compra INT NOT NULL,
+	id_usuario VARCHAR(30) NOT NULL,
     codigo_producto INT NOT NULL,
     cantidad_comprada INT NOT NULL,
     precio_item DECIMAL(10, 2) NOT NULL,
-    PRIMARY KEY (id_compra, codigo_producto),
+    PRIMARY KEY (id_compra, id_usuario, codigo_producto),
+    FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario),
     FOREIGN KEY (codigo_producto) REFERENCES productos (codigo_producto)
 );
 
