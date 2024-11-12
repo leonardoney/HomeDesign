@@ -1,3 +1,44 @@
+
+
+<!-- PHP para mercadopago -->
+<?php
+
+// Desactiva la notificación de errores deprecados en PHP
+error_reporting(~E_DEPRECATED);
+
+// Carga el autoload de Composer para gestionar dependencias
+require_once 'vendor/autoload.php';
+
+// Importa las clases necesarias del SDK de MercadoPago
+use MercadoPago\Client\Preference\PreferenceClient;
+use MercadoPago\MercadoPagoConfig;
+
+// Agrega credenciales ACCESS_TOKEN
+MercadoPagoConfig::setAccessToken("APP_USR-1186059779117849-111200-34340602b93556944f57fe01c278abe2-2092484724");
+
+// Crea una instancia del cliente de preferencias de MercadoPago
+$client = new PreferenceClient();
+
+// Crea una preferencia de pago con los detalles del producto y otras configuraciones
+$preference = $client->create([
+    "items" => [
+        [
+            "id" => "DEP-0001",
+            "title" => "Balon de Futbol",
+            "quantity" => 1,
+            "unit_price" => 550
+        ]
+    ],
+
+    // Descripción que aparecerá en el extracto de la tarjeta del comprador
+    "statement_descriptor" => "MI TIENDA",
+
+    // Referencia externa para identificar la transacción en el sistema del vendedor
+    "external_reference" => "CDP001",
+]);
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -167,39 +208,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
       mp.bricks().create("wallet", "wallet_container", {
         initialization: {
-            preferenceId: "<PREFERENCE_ID>",
+            preferenceId: '<?php echo $preference->id; ?>',
+            //preferenceId: "<PREFERENCE_ID>",
         },
       });
   </script>
 </body>
 </html>
-
-<!-- PHP para mercadopago -->
-<?php
-// SDK de Mercado Pago
-use MercadoPago\MercadoPagoConfig;
-
-// Agrega credenciales
-MercadoPagoConfig::setAccessToken("APP_USR-1186059779117849-111200-34340602b93556944f57fe01c278abe2-2092484724");
-
-// Crear Preferencia
-$client = new PreferenceClient();
-$preference = $client->create([
-  "items"=> array(
-    array(
-      "title" => "Mi producto",
-      "quantity" => 1,
-      "unit_price" => 2000
-    )
-  )
-]);
-
-//Urls de retorno
-$preference->back_urls = array(
-    "success" => "https://www.tu-sitio/success",
-    "failure" => "http://www.tu-sitio/failure",
-    "pending" => "http://www.tu-sitio/pending"
-);
-$preference->auto_return = "approved";
-
-?>
