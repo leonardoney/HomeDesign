@@ -12,7 +12,7 @@
     <link rel="stylesheet"  href="css/botones.css"/>
     <link rel="stylesheet"  href="css/cajas.css"/>
 </head>
-<body>
+
     <!-- Navegación -->
     <header>
         <section id="navigation">
@@ -34,7 +34,7 @@
             </nav>
         </section>
     </header>
-
+<body>
     <!-- Contenedor Principal -->
     <div class="container mt-5">
         <h1 class="text-center">La Tienda</h1>
@@ -56,7 +56,7 @@
                 <h5>Categorías</h5>
                 <div class="d-flex flex-column">
                     <button class="btn-sample mb-2" onclick="mostrarProductos('sofas')">Sofas</button>
-                    <button class="btn-sample mb-2" onclick="mostrarProductos('muebles')">Muebles</button>
+                    <button class="btn-sample mb-2" onclick="mostrarProductos('mesas')">Mesas</button>
                     <button class="btn-sample mb-2" onclick="mostrarProductos('iluminacion')">Iluminación</button>
                     <button class="btn-sample mb-2" onclick="mostrarProductos('poltronas')">Poltronas</button>
                     <button class="btn-sample mb-2" onclick="mostrarProductos('todos')">Mostrar Todos</button>
@@ -73,7 +73,7 @@
                                     <img src="image/Meet.jpg" class="card-img-top" alt="Producto 1" />
                                     <div class="card-body">
                                         <h5 class="card-title">Sofa Meet</h5>
-                                        <p class="card-text">$199.99</p>
+                                        <p class="card-text">$879.300,00</p>
                                         <form action="php/agregar_carrito.php" method="POST">
                                             <input type="hidden" name="id_producto" value="1">
                                             <input type="hidden" name="cantidad" value="1">
@@ -88,7 +88,7 @@
                                     <img src="image/Lerk.jpg" class="card-img-top" alt="Producto 2" />
                                     <div class="card-body">
                                         <h5 class="card-title">Sofa Lerk</h5>
-                                        <p class="card-text">$299.99</p>
+                                        <p class="card-text">$989.700,00</p>
                                         <form action="php/agregar_carrito.php" method="POST">
                                             <input type="hidden" name="id_producto" value="1">
                                             <input type="hidden" name="cantidad" value="1">
@@ -103,7 +103,7 @@
                                     <img src="image/Mestra.jpg" class="card-img-top" alt="Producto 3" />
                                     <div class="card-body">
                                         <h5 class="card-title">Sofa Mestra</h5>
-                                        <p class="card-text">$399.99</p>
+                                        <p class="card-text">$1.200.000,00</p>
                                         <form action="php/agregar_carrito.php" method="POST">
                                             <input type="hidden" name="id_producto" value="1">
                                             <input type="hidden" name="cantidad" value="1">
@@ -113,13 +113,13 @@
                                 </div>
                             </div>
                             
-                            <!-- Producto 1 mueble -->
-                            <div class="col-md-4 producto muebles">
+                            <!-- Producto 1 mesas -->
+                            <div class="col-md-4 producto mesas">
                                 <div class="card mb-4">
                                     <img src="image/Viena.jpg" class="card-img-top" alt="Producto 1" />
                                     <div class="card-body">
-                                        <h5 class="card-title">Combo Viena</h5>
-                                        <p class="card-text">$199.99</p>
+                                        <h5 class="card-title">Mesa Viena</h5>
+                                        <p class="card-text">$2.300.000,00</p>
                                         <form action="php/agregar_carrito.php" method="POST">
                                             <input type="hidden" name="id_producto" value="1">
                                             <input type="hidden" name="cantidad" value="1">
@@ -128,13 +128,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Producto 2 mueble -->
-                            <div class="col-md-4 producto muebles">
+                            <!-- Producto 2 mesas -->
+                            <div class="col-md-4 producto mesas">
                                 <div class="card mb-4">
                                     <img src="image/Elit.jpg" class="card-img-top" alt="Producto 2" />
                                     <div class="card-body">
-                                        <h5 class="card-title">Combo Elit</h5>
-                                        <p class="card-text">$299.99</p>
+                                        <h5 class="card-title">Mesa Elit</h5>
+                                        <p class="card-text">$2.550.000,00</p>
                                         <form action="php/agregar_carrito.php" method="POST">
                                             <input type="hidden" name="id_producto" value="1">
                                             <input type="hidden" name="cantidad" value="1">
@@ -143,13 +143,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Producto 3 mueble -->
-                            <div class="col-md-4 producto muebles">
+                            <!-- Producto 3 mesas -->
+                            <div class="col-md-4 producto mesas">
                                 <div class="card mb-4">
                                     <img src="image/Lecto.jpg" class="card-img-top" alt="Producto 3" />
                                     <div class="card-body">
-                                        <h5 class="card-title">Combo Lecto</h5>
-                                        <p class="card-text">$399.99</p>
+                                        <h5 class="card-title">Mesa Lecto</h5>
+                                        <p class="card-text">$2.800.000,00</p>
                                         <form action="php/agregar_carrito.php" method="POST">
                                             <input type="hidden" name="id_producto" value="1">
                                             <input type="hidden" name="cantidad" value="1">
@@ -162,10 +162,10 @@
                             <!-- Producto 1 lampara -->
                             <div class="col-md-4 producto iluminacion">
                                     <div class="card mb-4">
-                            <img src="image/lamp1.png" class="card-img-top" alt="Producto 1" />
+                            <img src="image/Oslo.jpg" class="card-img-top" alt="Producto 1" />
                             <div class="card-body">
-                                <h5 class="card-title">Lampara simple</h5>
-                                <p class="card-text">$19.99</p>
+                                <h5 class="card-title">Luminaria Oslo</h5>
+                                <p class="card-text">$330.000,00</p>
                                 <form action="php/agregar_carrito.php" method="POST">
                                     <input type="hidden" name="codigo_producto" value="1">
                                     <input type="hidden" name="cantidad" value="1">
@@ -177,10 +177,10 @@
                 <!-- Producto 2 lampara -->
                 <div class="col-md-4 producto iluminacion">
                     <div class="card mb-4">
-                            <img src="image/lamp2.png" class="card-img-top" alt="Producto 2" />
+                            <img src="image/Rusty.jpg" class="card-img-top" alt="Producto 2" />
                             <div class="card-body">
-                                <h5 class="card-title">Lampara doble</h5>
-                                <p class="card-text">$29.99</p>
+                                <h5 class="card-title">Luminaria Rusty</h5>
+                                <p class="card-text">$660.000,00</p>
                                 <form action="php/agregar_carrito.php" method="POST">
                                     <input type="hidden" name="codigo_producto" value="2">
                                     <input type="hidden" name="cantidad" value="1">
@@ -192,10 +192,10 @@
                 <!-- Producto 3 lampara-->
                 <div class="col-md-4 producto iluminacion">
                     <div class="card mb-4">
-                            <img src="image/lamp3.png" class="card-img-top" alt="Producto 3" />
+                            <img src="image/Eira5.jpg" class="card-img-top" alt="Producto 3" />
                             <div class="card-body">
-                                <h5 class="card-title">Lampara triple</h5>
-                                <p class="card-text">$39.99</p>
+                                <h5 class="card-title">Luminaria Eira 5</h5>
+                                <p class="card-text">$830.000,00</p>
                                 <form action="php/agregar_carrito.php" method="POST">
                                     <input type="hidden" name="codigo_producto" value="3">
                                     <input type="hidden" name="cantidad" value="1">
@@ -212,7 +212,7 @@
                         <img src="image/Dion.jpg" class="card-img-top" alt="Producto 1" />
                         <div class="card-body">
                             <h5 class="card-title">Poltrón Dion</h5>
-                            <p class="card-text">$199.99</p>
+                            <p class="card-text">$255.000,00</p>
                             <form action="php/agregar_carrito.php" method="POST">
                                 <input type="hidden" name="id_producto" value="1">
                                 <input type="hidden" name="cantidad" value="1">
@@ -227,7 +227,7 @@
                         <img src="image/Franca.jpg" class="card-img-top" alt="Producto 2" />
                         <div class="card-body">
                             <h5 class="card-title">Poltrón Franca</h5>
-                            <p class="card-text">$299.99</p>
+                            <p class="card-text">$352.000,00</p>
                             <form action="php/agregar_carrito.php" method="POST">
                                 <input type="hidden" name="id_producto" value="1">
                                 <input type="hidden" name="cantidad" value="1">
@@ -242,7 +242,7 @@
                         <img src="image/Frida.jpg" class="card-img-top" alt="Producto 3" />
                         <div class="card-body">
                             <h5 class="card-title">Poltrón Frida</h5>
-                            <p class="card-text">$299.99</p>
+                            <p class="card-text">$355.000,00</p>
                             <form action="php/agregar_carrito.php" method="POST">
                                 <input type="hidden" name="id_producto" value="1">
                                 <input type="hidden" name="cantidad" value="1">

@@ -60,11 +60,11 @@ font-size: 5rem;
 }
 
 .navbar-brand {
-    margin-left: 10px; /* Ajusta el valor para mover el logo hacia adentro */
+    margin-left: 15px; /* Ajusta el valor para mover el logo hacia adentro */
 }
 
 .navbar-toggler {
-    margin-right: 10px; /* Ajusta el valor para mover el toggler hacia adentro */
+    margin-right: 15px; /* Ajusta el valor para mover el toggler hacia adentro */
 }
 
 

@@ -1,7 +1,7 @@
 /* Estilos para las tarjetas .card */
 .card {
     width: 100%; /* Ajusta esto a un tamaño específico si lo deseas, como 300px */
-    max-width: 350px; /* Un poco más ancha */
+    max-width: 450px; /* Un poco más ancha */
     height: 300px; /* Altura consistente para todas las tarjetas */
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -27,9 +27,12 @@
     transform: scale(1.1); /* Aumenta ligeramente el tamaño de la imagen */
 }
 
+/* Para centrar el botón dentro de .card-body */
 .card-body {
-    text-align: center;
-    height: calc(450px - 250px); /* Altura consistente para el texto */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Centra los elementos horizontalmente */
 }
 
 .card-title {
@@ -57,7 +60,7 @@
 .producto {
     opacity: 0;
     transform: translateY(30px) scale(0.8);
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease; all 0.6s cubic-bezier(0.25, 1.5, 0.5, 1)
 }
 
 .producto.mostrar {
