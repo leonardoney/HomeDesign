@@ -53,7 +53,7 @@ font-size: 20px;
     color: #520404;
 }
 .animate__animated {
-font-family:  "Fleur De Leah", cursive;
+font-family:  "Fleur De Leah", cursive ;
 color: #16bac0;
 font-size: 3.5rem;
 
@@ -83,7 +83,7 @@ font-size: 3.5rem;
 .firma {
     text-align: right;
     margin-top: 50px;
-    font-family: 'Chaprile Calligraphy';
+    font-family: "Fleur De Leah";
     color:#16bac0;
     font-size: 50px;
 }
