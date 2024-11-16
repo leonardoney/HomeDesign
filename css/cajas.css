@@ -13,8 +13,8 @@
 
 /* Hover effect */
 .card:hover {
-    transform: translateY(-10px); /* Desplaza la tarjeta hacia arriba al pasar el mouse */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-20px); /* Desplaza la tarjeta hacia arriba al pasar el mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 }
 
 .card img {
@@ -24,7 +24,7 @@
 
 /* Zoom en la imagen al hover */
 .card:hover img {
-    transform: scale(1.1); /* Aumenta ligeramente el tamaño de la imagen */
+    transform: scale(1.3); /* Aumenta ligeramente el tamaño de la imagen */
 }
 
 /* Para centrar el botón dentro de .card-body */
@@ -66,4 +66,18 @@
 .producto.mostrar {
     opacity: 1;
     transform: translateY(0) scale(1);
+}
+/* Modal popup imagenes tienda */
+#modalImage {
+    width: 100%; /* La imagen ocupará todo el ancho disponible */
+    height: auto; /* Mantiene la proporción de la imagen */
+    max-height: 80vh; /* Limita la altura de la imagen para que no exceda el tamaño de la ventana */
+    object-fit: contain; /* Asegura que la imagen se ajuste correctamente dentro del modal */
+}
+#imageModalLabel {
+    font-family: "Fleur De Leah";
+    color:#138496;
+    font-size: 45px;
+    text-align: center;
+    width: 100%;
 }

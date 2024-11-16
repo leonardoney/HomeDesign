@@ -47,8 +47,8 @@
 color: #109196;
 font-family: 'times new roman';
 font-size: 20px;
-
 }
+
 #navbarNav * :hover{
     color: #520404;
 }
@@ -56,9 +56,9 @@ font-size: 20px;
 font-family:  "Fleur De Leah", cursive ;
 color: #16bac0;
 font-size: 3.5rem;
-
-
 } 
+
+
 
 .navbar-brand {
     margin-left: 15px; /* Ajusta el valor para mover el logo hacia adentro */
