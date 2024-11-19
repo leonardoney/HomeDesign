@@ -24,8 +24,12 @@ if ($producto) {
             $pdo->beginTransaction();
             
             // Agregar el producto al carrito
-            $sql_insert = "INSERT INTO items_X_compra (id_compra, id_usuario, codigo_producto, cantidad_comprada, precio_item) 
-                           VALUES (:id_compra, :id_usuario, :codigo_producto, :cantidad_comprada, :precio_item)";
+            $sql_insert = "INSERT INTO items_X_compra (id_compra, id_usuario, codigo_producto, cantidad_comprada, precio_item)
+            VALUES (:id_compra, :id_usuario, :codigo_producto, :cantidad_comprada, :precio_item)
+            ON DUPLICATE KEY UPDATE 
+            cantidad_comprada = :cantidad_comprada, 
+            precio_item = :precio_item";
+
             $stmt = $pdo->prepare($sql_insert);
             $stmt->bindParam(':id_compra', $id_compra, PDO::PARAM_INT);
             $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_STR);
