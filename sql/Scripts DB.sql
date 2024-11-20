@@ -16,7 +16,6 @@ CREATE TABLE usuarios (
     provincia VARCHAR(30) NOT NULL
 );
 
-
 CREATE TABLE productos (
 	codigo_producto INT PRIMARY KEY,
 	nombre VARCHAR(30) NOT NULL,
@@ -43,17 +42,19 @@ CREATE TABLE items_x_compra (
     FOREIGN KEY (codigo_producto) REFERENCES productos (codigo_producto)
 );
 
-/*
-CREATE TABLE stock_productos (
-	id_stock INT PRIMARY KEY,
-	codigo_producto INT NOT NULL,
-	stock_disponible INT NOT NULL,
-	FOREIGN KEY (codigo_producto) REFERENCES productos (codigo_producto)
-	);
-*/
--- Creación de datos
-INSERT INTO productos (codigo_producto, nombre, precio, stock) VALUES (1, 'Lampara', 19.99, 2);
-INSERT INTO productos (codigo_producto, nombre, precio, stock) VALUES (2, 'Lampara doble', 29.99, 2);
-INSERT INTO productos (codigo_producto, nombre, precio, stock) VALUES (3, 'Lampara triple', 39.99, 2);
+-- Creación de usuarios
 INSERT INTO usuarios (id_usuario, password, email, nombre, apellido, dni, telefono, direccion, codigo_postal, localidad, provincia)
 VALUES ('e', 'e', 'e@example.com', 'NombreEjemplo', 'ApellidoEjemplo', 12345678, 123456789, 'DireccionEjemplo', 12345, 'LocalidadEjemplo', 'ProvinciaEjemplo');
+-- Creación de productos
+INSERT INTO productos (codigo_producto, nombre, precio, stock) VALUES (1, 'Olso', 330000.00, 10);
+INSERT INTO productos (codigo_producto, nombre, precio, stock) VALUES (2, 'Rusti', 660000.00, 10);
+INSERT INTO productos (codigo_producto, nombre, precio, stock) VALUES (3, 'Eira 5', 830000.00, 10);
+INSERT INTO productos (codigo_producto, nombre, precio, stock) VALUES (10, 'Sofá Mestra', 1200000.00, 10);
+INSERT INTO productos (codigo_producto, nombre, precio, stock) VALUES (11, 'Sofá Lerk', 989700.00, 10);
+INSERT INTO productos (codigo_producto, nombre, precio, stock) VALUES (12, 'Sofá Meet', 879300.00, 10);
+INSERT INTO productos (codigo_producto, nombre, precio, stock) VALUES (20, 'Mesa Viena', 2300000.00, 10);
+INSERT INTO productos (codigo_producto, nombre, precio, stock) VALUES (21, 'Mesa Elit', 2550000.00, 10);
+INSERT INTO productos (codigo_producto, nombre, precio, stock) VALUES (22, 'Mesa Lecto', 2800000.00, 10);
+INSERT INTO productos (codigo_producto, nombre, precio, stock) VALUES (30, 'Poltrón Dion', 255000.00, 10);
+INSERT INTO productos (codigo_producto, nombre, precio, stock) VALUES (31, 'Poltrón Franca', 352000.00, 10);
+INSERT INTO productos (codigo_producto, nombre, precio, stock) VALUES (32, 'Poltrón Frida', 355000.00, 10);
