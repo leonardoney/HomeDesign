@@ -1,14 +1,14 @@
 <?php
-include 'db_connection.php';
-include 'subrutinas.php';
+include 'php/db_connection.php';
+include 'php/subrutinas.php';
 
-$cantidad = 1;  // Estático por ahora, puedes permitir que el usuario lo elija.
+$error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+$cantidad = 1;
 $id_compra = $_SESSION['id_compra'];
 $id_usuario = $_SESSION['user_id'];
 $codigo_producto = $_POST['codigo_producto'];
-$error = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Obtener el precio y el stock del producto desde la tabla productos.
 $sql_precio_stock = "SELECT precio, stock FROM productos WHERE codigo_producto = :codigo_producto LIMIT 1";
 $stmt = $pdo->prepare($sql_precio_stock);
