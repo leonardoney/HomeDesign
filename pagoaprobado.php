@@ -63,7 +63,7 @@ if (isset($_SESSION['id_compra']) && isset($_SESSION['user_id'])) {
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="tienda.html">Tienda</a></li>
+                <li class="nav-item"><a class="nav-link" href="tienda.php">Tienda</a></li>
                 <li class="nav-item"><a class="nav-link" href="carrito.php">Carrito</a></li>
                 <li class="nav-item"><a class="nav-link" href="login.html">Iniciar Sesión</a></li>
             </ul>
@@ -77,7 +77,7 @@ if (isset($_SESSION['id_compra']) && isset($_SESSION['user_id'])) {
       <h6 class="t">Haz click para regresar a la tienda y seguir comprando</h6>
       <br><br><br><br>
       <div class="text-center">
-        <a href="tienda.html" class="btn btn-sample">Regresar a la tienda</a>
+        <a href="tienda.php" class="btn btn-sample">Regresar a la tienda</a>
       </div>
   </div>
 

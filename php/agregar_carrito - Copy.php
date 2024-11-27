@@ -2,11 +2,13 @@
 include 'db_connection.php';
 include 'subrutinas.php';
 
+$cantidad = 1;  // Estático por ahora, puedes permitir que el usuario lo elija.
 $id_compra = $_SESSION['id_compra'];
 $id_usuario = $_SESSION['user_id'];
 $codigo_producto = $_POST['codigo_producto'];
-$cantidad = 1;
+$error = '';
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Obtener el precio y el stock del producto desde la tabla productos.
 $sql_precio_stock = "SELECT precio, stock FROM productos WHERE codigo_producto = :codigo_producto LIMIT 1";
 $stmt = $pdo->prepare($sql_precio_stock);
@@ -49,16 +51,17 @@ if ($producto) {
             $pdo->commit();
 
             // Mensaje de éxito
-            mensaje_popup('Producto agregado al carrito con éxito');
+            $error = 'Producto agregado al carrito con éxito';
         } catch (PDOException $e) {
             // Revertir la transacción si ocurre un error
             $pdo->rollBack();
-            mensaje_popup('Hubo un error al agregar el producto al carrito');
+            $error = 'Hubo un error al agregar el producto al carrito' + $e;
         }
     } else {
-        mensaje_popup('Stock insuficiente para el producto seleccionado');
+        $error = 'Stock insuficiente para el producto seleccionado';
     }
 } else {
-    mensaje_popup('No se encontró el producto');
+    $error = 'No se encontró el producto';
+}
 }
 ?>

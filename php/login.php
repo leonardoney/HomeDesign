@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //session_start();
             $_SESSION['user_id'] = $usuario['id_usuario'];
             $_SESSION['id_compra'] = $id_compra;
-            header("Location: ../tienda.html");
+            header("Location: ../tienda.php");
             exit();
         } else {
             mensaje_popup('Usuario o contraseña incorrecta');

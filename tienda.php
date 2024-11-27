@@ -22,7 +22,7 @@
     <header>
         <section id="navigation">
             <nav class="navbar navbar-light bg-warning w-100">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand">
                     <img src="image/HomeDesing logo.png" alt="logo" width="60" height="35" class="d-inline-block align-top" />
                     HomeDesign
                 </a>
@@ -31,9 +31,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="tienda.html">Tienda</a></li>
                         <li class="nav-item"><a class="nav-link" href="carrito.php">Carrito</a></li>
-                        <li class="nav-item"><a class="nav-link" href="login.html">Iniciar Sesión</a></li>
                     </ul>
                 </div>
             </nav>
@@ -80,7 +78,7 @@
                                         <h5 class="card-title">Sofa Meet</h5>
                                         <p class="card-text">$879.300,00</p>
                                         <form action="php/agregar_carrito.php" method="POST">
-                                            <input type="hidden" name="codigo_producto" value="1">
+                                            <input type="hidden" name="codigo_producto" value="12">
                                             <input type="hidden" name="cantidad" value="1">
                                             <button type="submit" class="btn btn-sample">Agregar al Carrito</button>
                                         </form>
@@ -95,7 +93,7 @@
                                         <h5 class="card-title">Sofa Lerk</h5>
                                         <p class="card-text">$989.700,00</p>
                                         <form action="php/agregar_carrito.php" method="POST">
-                                            <input type="hidden" name="codigo_producto" value="1">
+                                            <input type="hidden" name="codigo_producto" value="11">
                                             <input type="hidden" name="cantidad" value="1">
                                             <button type="submit" class="btn btn-sample">Agregar al Carrito</button>
                                         </form>                                
@@ -110,7 +108,7 @@
                                         <h5 class="card-title">Sofa Mestra</h5>
                                         <p class="card-text">$1.200.000,00</p>
                                         <form action="php/agregar_carrito.php" method="POST">
-                                            <input type="hidden" name="codigo_producto" value="1">
+                                            <input type="hidden" name="codigo_producto" value="10">
                                             <input type="hidden" name="cantidad" value="1">
                                             <button type="submit" class="btn btn-sample">Agregar al Carrito</button>
                                         </form>
@@ -126,7 +124,7 @@
                                         <h5 class="card-title">Mesa Viena</h5>
                                         <p class="card-text">$2.300.000,00</p>
                                         <form action="php/agregar_carrito.php" method="POST">
-                                            <input type="hidden" name="codigo_producto" value="1">
+                                            <input type="hidden" name="codigo_producto" value="20">
                                             <input type="hidden" name="cantidad" value="1">
                                             <button type="submit" class="btn btn-sample">Agregar al Carrito</button>
                                         </form>
@@ -141,7 +139,7 @@
                                         <h5 class="card-title">Mesa Elit</h5>
                                         <p class="card-text">$2.550.000,00</p>
                                         <form action="php/agregar_carrito.php" method="POST">
-                                            <input type="hidden" name="codigo_producto" value="1">
+                                            <input type="hidden" name="codigo_producto" value="21">
                                             <input type="hidden" name="cantidad" value="1">
                                             <button type="submit" class="btn btn-sample">Agregar al Carrito</button>
                                         </form>                                
@@ -156,7 +154,7 @@
                                         <h5 class="card-title">Mesa Lecto</h5>
                                         <p class="card-text">$2.800.000,00</p>
                                         <form action="php/agregar_carrito.php" method="POST">
-                                            <input type="hidden" name="codigo_producto" value="1">
+                                            <input type="hidden" name="codigo_producto" value="22">
                                             <input type="hidden" name="cantidad" value="1">
                                             <button type="submit" class="btn btn-sample">Agregar al Carrito</button>
                                         </form>
@@ -219,7 +217,7 @@
                                         <h5 class="card-title">Poltrón Dion</h5>
                                         <p class="card-text">$255.000,00</p>
                                         <form action="php/agregar_carrito.php" method="POST">
-                                            <input type="hidden" name="codigo_producto" value="1">
+                                            <input type="hidden" name="codigo_producto" value="30">
                                             <input type="hidden" name="cantidad" value="1">
                                             <button type="submit" class="btn btn-sample">Agregar al Carrito</button>
                                          </form>
@@ -234,7 +232,7 @@
                                         <h5 class="card-title">Poltrón Franca</h5>
                                         <p class="card-text">$352.000,00</p>
                                         <form action="php/agregar_carrito.php" method="POST">
-                                            <input type="hidden" name="codigo_producto" value="1">
+                                            <input type="hidden" name="codigo_producto" value="31">
                                             <input type="hidden" name="cantidad" value="1">
                                             <button type="submit" class="btn btn-sample">Agregar al Carrito</button>
                                         </form>                                
@@ -249,7 +247,7 @@
                                         <h5 class="card-title">Poltrón Frida</h5>
                                         <p class="card-text">$355.000,00</p>
                                         <form action="php/agregar_carrito.php" method="POST">
-                                            <input type="hidden" name="codigo_producto" value="1">
+                                            <input type="hidden" name="codigo_producto" value="32">
                                             <input type="hidden" name="cantidad" value="1">
                                             <button type="submit" class="btn btn-sample">Agregar al Carrito</button>
                                         </form>

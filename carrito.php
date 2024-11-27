@@ -98,7 +98,7 @@ $preference->auto_return = "approved";
   <header>
     <section id="navigation">
       <nav class="navbar navbar-light bg-warning w-100">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand">
             <img src="image/HomeDesing logo.png" alt="logo" width="60" height="35" class="d-inline-block align-top" />
             HomeDesign
         </a>
@@ -107,9 +107,7 @@ $preference->auto_return = "approved";
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="tienda.html">Tienda</a></li>
-                <li class="nav-item"><a class="nav-link" href="carrito.php">Carrito</a></li>
-                <li class="nav-item"><a class="nav-link" href="login.html">Iniciar Sesión</a></li>
+                <li class="nav-item"><a class="nav-link" href="tienda.php">Tienda</a></li>
             </ul>
         </div>
       </nav>
