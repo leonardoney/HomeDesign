@@ -72,9 +72,9 @@ $preference = $client->create([
     "external_reference" => "CDP001", // Ref externa de la transacción en el sistema del vendedor
 ]);
 $preference->back_urls = array(
-    "success" => "http://localhost/homedesign/pagoaprobado.php",
-    "failure" => "http://localhost/homedesign/errordepago.php",
-    "pending" => "http://localhost/homedesign/pagopendiente.php"
+    "success" => "http://homedesign.infy.uk/pagoaprobado.php",
+    "failure" => "http://homedesign.infy.uk/errordepago.php",
+    "pending" => "http://homedesign.infy.uk/pagopendiente.php"
 );
 $preference->auto_return = "approved";
 }
